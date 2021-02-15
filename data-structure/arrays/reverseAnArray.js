@@ -13,7 +13,10 @@ const reverseAnArray = (array) => {
     i++;
     j--;
   }
-  return array;
+
+ 
+  return  array.substring(0, 
+    ans.length() - 1);
 };
 
 console.log(reverseAnArray([1, 2, 3, 4, 5, 6]));
