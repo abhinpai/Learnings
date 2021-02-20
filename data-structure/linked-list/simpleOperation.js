@@ -1,100 +1,102 @@
-class ListNode {
-  data;
-  next = null;
+const LinkedList = require('./linkedlist')
 
-  constructor(value) {
-    this.data = value;
-    this.next = null;
-  }
-}
+// class ListNode {
+//   data;
+//   next = null;
 
-class LinkedList {
-  constructor() {
-    this.head = null;
-    this.size = 0;
-  }
+//   constructor(value) {
+//     this.data = value;
+//     this.next = null;
+//   }
+// }
 
-  add(element) {
-    let node = new ListNode(element);
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.size = 0;
+//   }
 
-    let current; // To hold the current head
+//   add(element) {
+//     let node = new ListNode(element);
 
-    //   If the list is empty add this as a head node
-    if (this.head === null) {
-      this.head = node;
-    } else {
-      current = this.head;
-      while (current.next) {
-        current = current.next;
-      }
+//     let current; // To hold the current head
 
-      current.next = node;
-    }
-    this.size++;
-  }
+//     //   If the list is empty add this as a head node
+//     if (this.head === null) {
+//       this.head = node;
+//     } else {
+//       current = this.head;
+//       while (current.next) {
+//         current = current.next;
+//       }
 
-  printList() {
-    let current = this.head;
-    let list = [];
-    while (current.next) {
-      list.push(current);
-      current = current.next;
-    }
-    list.push(current);
-    return list;
-  }
+//       current.next = node;
+//     }
+//     this.size++;
+//   }
 
-  isEmpty() {
-    return this.head === null;
-  }
+//   printList() {
+//     let current = this.head;
+//     let list = [];
+//     while (current.next) {
+//       list.push(current);
+//       current = current.next;
+//     }
+//     list.push(current);
+//     return list;
+//   }
 
-  currentHead = () => this.head;
+//   isEmpty() {
+//     return this.head === null;
+//   }
 
-  listSize = () => this.size;
+//   currentHead = () => this.head;
 
-  insertAt(value, position) {
-    let currentPosition = 1;
-    let nextNode = null;
-    let node = new ListNode(value);
+//   listSize = () => this.size;
 
-    let current = this.head;
+//   insertAt(value, position) {
+//     let currentPosition = 1;
+//     let nextNode = null;
+//     let node = new ListNode(value);
 
-    while (current.next && position - 1 !== currentPosition) {
-      current = current.next;
-      currentPosition++;
-    }
+//     let current = this.head;
 
-    nextNode = current.next;
-    current.next = node;
-    node.next = nextNode;
-  }
+//     while (current.next && position - 1 !== currentPosition) {
+//       current = current.next;
+//       currentPosition++;
+//     }
 
-  removeKthNodeFromEnd(head, k) {
-    let size = 1;
-    let current = head;
+//     nextNode = current.next;
+//     current.next = node;
+//     node.next = nextNode;
+//   }
 
-    while (current.next) {
-      current = current.next;
-      size++;
-    }
+//   removeKthNodeFromEnd(head, k) {
+//     let size = 1;
+//     let current = head;
 
-    let nodePositionToRemove = size - k;
-    let currentPosition = 1;
-    current = head;
-    let prevNode = null;
+//     while (current.next) {
+//       current = current.next;
+//       size++;
+//     }
 
-    while (current.next && currentPosition <= nodePositionToRemove) {
-      prevNode = current;
-      current = current.next;
-      currentPosition++;
-    }
-    if (prevNode !== null) {
-      prevNode.next = current.next;
-    } else {
-      current = current.next;
-    }
-  }
-}
+//     let nodePositionToRemove = size - k;
+//     let currentPosition = 1;
+//     current = head;
+//     let prevNode = null;
+
+//     while (current.next && currentPosition <= nodePositionToRemove) {
+//       prevNode = current;
+//       current = current.next;
+//       currentPosition++;
+//     }
+//     if (prevNode !== null) {
+//       prevNode.next = current.next;
+//     } else {
+//       current = current.next;
+//     }
+//   }
+// }
 
 // const operations = [
 //   { arguments: [], method: 'isEmpty' },
@@ -124,8 +126,7 @@ const operations = [
   { arguments: [8], method: 'add' },
   { arguments: [9], method: 'add' },
   { arguments: [], method: 'printList' },
-  { arguments: [], method: 'removeKthNodeFromEnd' },
-  { arguments: [], method: 'printList' },
+  { arguments: [], method: 'reverseList' },
 ];
 
 const LinkedListOperations = () => {
@@ -156,6 +157,12 @@ const LinkedListOperations = () => {
         operation.output = linkedList.insertAt(
           operation.arguments.value,
           operation.arguments.position
+        );
+        console.log(operation);
+        break;
+      case 'reverseList':
+        operation.output = linkedList.reverseLinkedList(
+          linkedList.currentHead()
         );
         console.log(operation);
         break;
